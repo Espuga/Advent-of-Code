@@ -1,49 +1,36 @@
-f = open("./inputs/prova4.txt", "r")
+def prova(result, seed):
+    if seed < result:
+        return int(seed)
+    return result
+
+f = open("./inputs/prova5.txt", "r")
 linies = f.readlines()
+
+seeds = linies[0].split(":")[1].split()
+linies.pop(0)
+linies.pop(0)
 
 result = 0
 
+def comprovar():
+    pass
 
-diccionari = {}
+for seed in seeds:
+    original = seed
+    print("======= ", seed, " =======")
+    trobat = False
+    for linia in linies:
+        linia = linia.strip()
+        if linia != "":
+            a = linia.split()
+            if a[0][0].isdigit():
+                for i in range(len(a)):
+                    a[i] = int(a[i])
+                if int(seed) in range(a[1], a[1]+a[2]+1):
+                    seed = int(seed)-a[1]+a[0]
+    print(seed)
+    result = int(seed) if original == seeds[0] else prova(result, seed)
 
-for linia in linies:
-    #print("===")
-    linia = linia.strip()
-
-    a, b = linia.split("|")
-    id = a.split(":")[0].split()[1]
-    win = a.split(":")[1].strip().split()
-    numbers = b.strip().split()
-
-    aux = 0
-    primer = True
-
-    # Part 2
-    nRepetits = len(set(numbers) & set(win))
-    try:
-        diccionari[int(id)]
-    except:
-        diccionari[int(id)] = 1
-
-    for n in numbers:
-        if n in win:
-            if primer:
-                primer = False
-                aux = 1
-            else:
-                aux *= 2
-        
-    result += aux
-
-    # Part 2
-    #print(id, str(nRepetits))
-    for x in range(1, nRepetits+1):
-        try:
-            diccionari[int(id)+x] += diccionari[int(id)]+1
-        except:
-            diccionari[int(id)+x] = diccionari[int(id)]
-    
-    print(diccionari)
-
-
-print(result)
+print("===========")
+print("Result "+ str(result))
+print("===========")

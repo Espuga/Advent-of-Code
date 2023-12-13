@@ -16,12 +16,10 @@ def posicionar(llista):
 
 def comprovar(card1, cardToPut):
     # True en cas de anar despres, False en cas de anar abans
-    card1_ = sorted(dic[card1], key=lambda x: dic[card1][x], reverse=True)
-    card2_ = sorted(dic[cardToPut], key=lambda x: dic[cardToPut][x], reverse=True)
-    keys1 = list(card1_.keys())
-    keys2 = list(card2_.keys())
-    for x in range(len(list(card1_.keys()))):
-        if dic[card1][keys1[x]] > dic[cardToPut][keys2[x]]:
+    keys1 = sorted(dic[card1], key=lambda x: dic[card1][x], reverse=True)
+    keys2 = sorted(dic[cardToPut], key=lambda x: dic[cardToPut][x], reverse=True)
+    for x in range(len(keys1)):
+        if dic[card1][keys1[x]] < dic[cardToPut][keys2[x]]:
             return True
     return False
 
@@ -37,10 +35,11 @@ def desempatar(results):
         # Per cada carta que s'ha de ordenar
         if len(finalResults) != 0:
             # Si hi han elements
-            for i in range(len(finalResults)-1):
+            for i in range(len(finalResults)):
                 # Per cada carta ja afegida, comprovar per saver on colocar la nova
                 if comprovar(finalResults[i], cardToPut) == False:
                     finalResults.insert(i, cardToPut)
+                    afegit = True
                     break
             if afegit == False:
                 finalResults.append(cardToPut)

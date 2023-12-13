@@ -19,8 +19,10 @@ def comprovar(card1, cardToPut):
     keys1 = sorted(dic[card1], key=lambda x: dic[card1][x], reverse=True)
     keys2 = sorted(dic[cardToPut], key=lambda x: dic[cardToPut][x], reverse=True)
     for x in range(len(keys1)):
-        if dic[card1][keys1[x]] < dic[cardToPut][keys2[x]]:
+        if lletres2.index(keys1[x]) < lletres2.index(keys2[x]):
             return True
+        """ if lletres[keys1[x]] > lletres[keys2[x]]:
+            return True """
     return False
 
 def desempatar(results):
@@ -50,8 +52,9 @@ def desempatar(results):
 
                 
 
-linies = open("./inputs/prova7.txt", "r").readlines()
+linies = open("./inputs/input7.txt", "r").readlines()
 
+lletres2 = ["A", "K", "Q","J","T","9","8","7","6","5","4","3","2"]
 lletres = {
     "A": 13,
     "K": 12,

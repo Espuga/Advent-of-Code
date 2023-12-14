@@ -1,2 +1,2 @@
 # Advent-of-Code
-My solutions to adventofcode.com puzzles.
+My solutions to [adventofcode.com](adventofcode.com) puzzles.
